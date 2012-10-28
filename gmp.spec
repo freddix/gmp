@@ -1,11 +1,12 @@
 Summary:	GNU arbitrary precision library
 Name:		gmp
 Version:	5.0.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/gmp/%{name}-%{version}.tar.xz
 # Source0-md5:	8aef50959acec2a1ad41d144ffe0f3b5
+Patch0:		%{name}-am.patch
 URL:		http://www.swox.com/gmp/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,6 +58,7 @@ library.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 mkdir build
@@ -82,11 +84,11 @@ cd build
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-p /usr/sbin/ldconfig
+%postun	-p /usr/sbin/ldconfig
 
-%post	c++ -p /sbin/ldconfig
-%postun	c++ -p /sbin/ldconfig
+%post	c++ -p /usr/sbin/ldconfig
+%postun	c++ -p /usr/sbin/ldconfig
 
 %post devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
