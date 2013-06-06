@@ -1,11 +1,11 @@
 Summary:	GNU arbitrary precision library
 Name:		gmp
-Version:	5.1.1
+Version:	5.1.2
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/gmp/%{name}-%{version}.tar.xz
-# Source0-md5:	485b1296e6287fa381e6015b19767989
+# Source0-md5:	06fe2ca164221c59ce74867155cfc1ac
 URL:		http://www.swox.com/gmp/
 BuildRequires:	autoconf
 BuildRequires:	automake
