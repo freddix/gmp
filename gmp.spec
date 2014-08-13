@@ -1,7 +1,7 @@
 Summary:	GNU arbitrary precision library
 Name:		gmp
 Version:	6.0.0
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/gmp/%{name}-%{version}a.tar.xz
