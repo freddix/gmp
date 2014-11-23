@@ -1,7 +1,7 @@
 Summary:	GNU arbitrary precision library
 Name:		gmp
 Version:	6.0.0
-Release:	3
+Release:	4
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/gmp/%{name}-%{version}a.tar.xz
@@ -50,6 +50,7 @@ Summary:	GNU arbitrary precition library - C++ interface headers
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description c++-devel
 Header files for C++ class interface to GNU arbitrary precision
@@ -70,14 +71,18 @@ cd build
 	--enable-cxx		\
 	--enable-fft
 %{__make}
-%{__make} check
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-cd build
-%{__make} install \
+%{__make} -j1 -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
+%check
+%{__make} -C build check
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -103,7 +108,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgmp.so
-%{_libdir}/libgmp.la
 %{_includedir}/gmp.h
 %{_infodir}/gmp.info*
 
@@ -115,6 +119,5 @@ rm -rf $RPM_BUILD_ROOT
 %files c++-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgmpxx.so
-%{_libdir}/libgmpxx.la
 %{_includedir}/gmpxx.h
 
